@@ -15,7 +15,7 @@ export function Hero() {
         className="mb-8 relative w-40 h-40 overflow-hidden rounded-full border-4 border-primary/20 shadow-xl"
       >
         <Image
-          src="/placeholder.svg"
+          src="/photo.png"
           alt="David Rio"
           fill
           className="object-cover"
