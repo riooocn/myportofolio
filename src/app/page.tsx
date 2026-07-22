@@ -7,7 +7,6 @@ import { SectionTitle } from "@/components/SectionTitle"
 import { SkillCard } from "@/components/SkillCard"
 import { Button } from "@/components/ui/button"
 import { Code, RefreshCcw } from "lucide-react"
-import { Card, CardContent } from "@/components/ui/card"
 
 const skills = [
   "HTML", "CSS", "JavaScript", "TypeScript", "React", "Next.js", 
@@ -54,46 +53,46 @@ export default function Home() {
     }, []);
 
   return (
-    <div className="pb-20">
+    <div className="pb-32">
       <Hero />
       
-      <Container className="py-16 border-t">
+      <Container className="py-24 border-t border-border">
         <SectionTitle>My Skills</SectionTitle>
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+        <div className="flex flex-wrap justify-center gap-3 md:gap-4 max-w-4xl mx-auto">
           {skills.map((skill) => (
-            <SkillCard key={skill} name={skill} icon={<Code className="h-8 w-8" />} />
+            <SkillCard key={skill} name={skill} icon={<Code className="h-4 w-4" />} />
           ))}
         </div>
       </Container>
 
-      <Container className="py-16">
+      <Container className="py-24">
         <SectionTitle>Programming Quote</SectionTitle>
-        <Card className="max-w-3xl mx-auto overflow-hidden border-primary/20 bg-muted/30">
-          <CardContent className="p-8 md:p-12 flex flex-col items-center text-center">
+        <div className="max-w-3xl mx-auto overflow-hidden border border-border bg-card shadow-[0_1px_2px_rgba(15,23,42,0.04),0_8px_24px_rgba(15,23,42,0.06)] rounded-2xl">
+          <div className="p-10 md:p-16 flex flex-col items-center text-center">
             {loading ? (
               <div className="animate-pulse space-y-4 w-full flex flex-col items-center">
                 <div className="h-4 bg-muted rounded w-3/4"></div>
                 <div className="h-4 bg-muted rounded w-1/2"></div>
               </div>
             ) : error ? (
-              <div className="text-destructive mb-6">Failed to load quote. Please try again.</div>
+              <div className="text-destructive font-medium mb-6">Failed to load quote. Please try again.</div>
             ) : (
-              <div className="mb-8">
-                <p className="text-xl md:text-2xl italic font-medium mb-4">&quot;{quote?.quote}&quot;</p>
-                <p className="text-muted-foreground font-semibold">- {quote?.author}</p>
+              <div className="mb-10">
+                <p className="text-2xl md:text-3xl italic font-medium leading-tight tracking-tight text-foreground mb-6">&quot;{quote?.quote}&quot;</p>
+                <p className="text-muted-foreground font-semibold tracking-wide text-sm uppercase">- {quote?.author}</p>
               </div>
             )}
             <Button 
               onClick={fetchQuote} 
               disabled={loading} 
               variant="outline" 
-              className="gap-2 rounded-full"
+              className="gap-2 rounded-full font-medium border-border hover:bg-surface-alt shadow-sm transition-all hover:-translate-y-[1px]"
             >
               <RefreshCcw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
               Refresh Quote
             </Button>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </Container>
     </div>
   )

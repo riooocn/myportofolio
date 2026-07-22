@@ -74,44 +74,41 @@ const filters = ["All", "React", "Laravel", "Next.js", "Web"]
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState("All")
 
-  const filteredProjects = activeFilter === "All" 
-    ? allProjects 
-    : allProjects.filter(p => p.tags.some(tag => tag.toLowerCase().includes(activeFilter.toLowerCase()) || activeFilter === "Web" && !["React", "Next.js", "Laravel"].includes(tag)))
-
-  // Improved filtering logic for "Web" to just catch any web-related project if needed, 
-  // but simpler to just match tags:
   const actualFilteredProjects = activeFilter === "All"
     ? allProjects
     : allProjects.filter(p => p.tags.includes(activeFilter) || (activeFilter === "Web" && p.tags.includes("Web")))
 
   return (
-    <Container className="py-16 md:py-24">
-      <SectionTitle>My Projects</SectionTitle>
-      
-      <div className="flex flex-wrap gap-2 mb-10">
-        {filters.map(filter => (
-          <Button
-            key={filter}
-            variant={activeFilter === filter ? "default" : "outline"}
-            onClick={() => setActiveFilter(filter)}
-            className="rounded-full"
-          >
-            {filter}
-          </Button>
-        ))}
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {actualFilteredProjects.map((project) => (
-          <ProjectCard key={project.id} project={project} />
-        ))}
-      </div>
-      
-      {actualFilteredProjects.length === 0 && (
-        <div className="text-center py-20 text-muted-foreground">
-          No projects found for the selected filter.
+    <Container className="py-24 md:py-32">
+      <div className="max-w-4xl mx-auto">
+        <div className="text-center mb-16">
+          <SectionTitle>Featured Work</SectionTitle>
+          <div className="flex flex-wrap justify-center gap-2 mt-8">
+            {filters.map(filter => (
+              <Button
+                key={filter}
+                variant={activeFilter === filter ? "default" : "outline"}
+                onClick={() => setActiveFilter(filter)}
+                className="rounded-full shadow-none font-medium px-5"
+              >
+                {filter}
+              </Button>
+            ))}
+          </div>
         </div>
-      )}
+
+        <div className="flex flex-col gap-24 md:gap-32">
+          {actualFilteredProjects.map((project) => (
+            <ProjectCard key={project.id} project={project} />
+          ))}
+        </div>
+        
+        {actualFilteredProjects.length === 0 && (
+          <div className="text-center py-20 text-muted-foreground">
+            No projects found for the selected filter.
+          </div>
+        )}
+      </div>
     </Container>
   )
 }

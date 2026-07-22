@@ -1,5 +1,3 @@
-import { Card, CardContent } from "./ui/card"
-
 interface SkillCardProps {
   name: string
   icon?: React.ReactNode
@@ -7,15 +5,13 @@ interface SkillCardProps {
 
 export function SkillCard({ name, icon }: SkillCardProps) {
   return (
-    <Card className="overflow-hidden group hover:shadow-md transition-all hover:border-primary/50">
-      <CardContent className="p-6 flex flex-col items-center justify-center gap-3">
-        {icon && (
-          <div className="text-muted-foreground group-hover:text-primary transition-colors">
-            {icon}
-          </div>
-        )}
-        <h3 className="font-medium text-center">{name}</h3>
-      </CardContent>
-    </Card>
+    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface-alt border border-border shadow-[0_1px_2px_rgba(15,23,42,0.04)] hover:bg-surface hover:-translate-y-[1px] hover:shadow-[0_4px_12px_rgba(15,23,42,0.06)] transition-all duration-300 group cursor-default">
+      {icon && (
+        <div className="text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0">
+          {icon}
+        </div>
+      )}
+      <span className="text-[14px] font-medium text-foreground">{name}</span>
+    </div>
   )
 }
