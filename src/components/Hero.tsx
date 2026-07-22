@@ -1,12 +1,12 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, Variants } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
 import { Container } from "./Container"
 
 export function Hero() {
-  const container = {
+  const container: Variants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
@@ -16,7 +16,7 @@ export function Hero() {
     }
   }
 
-  const item = {
+  const item: Variants = {
     hidden: { opacity: 0, filter: "blur(12px)", y: 10 },
     show: { opacity: 1, filter: "blur(0px)", y: 0, transition: { duration: 0.6, ease: "easeOut" } }
   }

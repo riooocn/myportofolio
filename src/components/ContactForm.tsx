@@ -6,7 +6,7 @@ import { Button } from "./ui/button"
 import { Input } from "./ui/input"
 import { Textarea } from "./ui/textarea"
 import { Label } from "./ui/label"
-import { SendHorizontal } from "lucide-react"
+import { Send } from "lucide-react"
 
 type ContactFormData = {
   name: string
@@ -94,7 +94,7 @@ export function ContactForm() {
 
       <Button type="submit" className="w-full sm:w-auto rounded-full px-8 h-12 text-[15px] gap-2 font-medium bg-foreground text-background hover:bg-foreground/90 transition-all shadow-[0_4px_12px_rgba(15,23,42,0.1)] hover:-translate-y-[1px]" disabled={isSubmitting}>
         {isSubmitting ? "Sending..." : "Send Message"}
-        {!isSubmitting && <SendHorizontal className="w-4 h-4" />}
+        {!isSubmitting && <Send className="w-4 h-4" />}
       </Button>
     </form>
   )
